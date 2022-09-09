@@ -1,1 +1,26 @@
-let title = document.querySelector(".title").innerText.toUpperCase()
+function randomMeal () {
+    axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
+      .then ((response => {
+
+        //ingredients implementation
+        const ingredients = Object.entries(response.data.meals[0])
+        //Ingredients list starts at [9] and ends at [28]
+        for(i=9; i < 29; i++ ){
+            if(ingredients[i][1] != ""){
+                let myList= document.querySelector('#myList')
+                let li = document.createElement("li");
+                li.innerText = ingredients[i][1];
+                myList.appendChild(li);
+            
+            }
+        }
+        document.querySelector('#mealName').textContent = response.data.meals[0].strMeal        
+        document.querySelector('#preparation').textContent = response.data.meals[0].strInstructions
+        document.querySelector('#photo').setAttribute('src', response.data.meals[0].strMealThumb)
+        console.log(response.data.meals[0]) 
+      })
+
+      )  
+}
+
+randomMeal()
