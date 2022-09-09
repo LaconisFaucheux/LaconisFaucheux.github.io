@@ -24,6 +24,12 @@ function randomMeal () {
         let country = response.data.meals[0].strArea
         document.querySelector('#flag').setAttribute('src', `media/${country}.png`)
         document.querySelector('#flag').setAttribute('alt', country)
+        document.querySelector('#flag').setAttribute('title', country)
+        //YouTube video
+        let videoLink = response.data.meals[0].strYoutube
+        // change substring 'watch?v=' to 'embed/'
+        document.querySelector('#videoYT').setAttribute('src', videoLink.replace('watch?v=', 'embed/'))
+        
       })
 
       ) 
