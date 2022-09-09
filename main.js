@@ -1,6 +1,11 @@
 function randomMeal () {
     axios.get('https://www.themealdb.com/api/json/v1/1/random.php')
       .then ((response => {
+        //removing former ingredients list
+        let ul = document.getElementById('myList');
+        while (ul.firstChild) {
+            ul.removeChild(ul.firstChild);
+        }
         //ingredients implementation
         const ingredients = Object.entries(response.data.meals[0])
         //Ingredients list starts at [9] and ends at [28]
@@ -17,7 +22,8 @@ function randomMeal () {
         document.querySelector('#photo').setAttribute('src', response.data.meals[0].strMealThumb)
       })
 
-      )  
+      ) 
+      .catch ((error) => console.log(error))
 }
 
 randomMeal()
