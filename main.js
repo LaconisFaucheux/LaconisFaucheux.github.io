@@ -20,6 +20,10 @@ function randomMeal () {
         document.querySelector('#mealName').textContent = response.data.meals[0].strMeal        
         document.querySelector('#preparation').textContent = response.data.meals[0].strInstructions
         document.querySelector('#photo').setAttribute('src', response.data.meals[0].strMealThumb)
+        //flags
+        let country = response.data.meals[0].strArea
+        document.querySelector('#flag').setAttribute('src', `media/${country}.png`)
+        document.querySelector('#flag').setAttribute('alt', country)
       })
 
       ) 
